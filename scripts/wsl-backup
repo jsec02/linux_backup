@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# ================================================================================
+# =                                  WSL-BACKUP                                  =
+# ================================================================================
+
+# Backup WSL configuration to dual restic repositories
+# - /etc/wsl.conf (Linux side WSL config)
+# - .wslconfig (Windows side WSL VM config)
+# - Backs up to local Pi (R1) and cloud B2 (R2)
+# - Prunes old snapshots, keeping last 1
+
+set -euo pipefail
+
+BACKUP_DIR=~/temp/wsl-config
+mkdir -p "$BACKUP_DIR"
+
+WINDOWS_USER=$(powershell.exe -Command "echo \$env:USERNAME" | tr -d '\r')
+WSLCONFIG_PATH="/mnt/c/Users/$WINDOWS_USER/.wslconfig"
+
+echo "Collecting WSL config files..."
+
+# --- 1. Linux side ---
+echo "  → /etc/wsl.conf..."
+cp /etc/wsl.conf "$BACKUP_DIR/wsl.conf"
+
+# --- 2. Windows side ---
+echo "  → .wslconfig..."
+if [ -f "$WSLCONFIG_PATH" ]; then
+  cp "$WSLCONFIG_PATH" "$BACKUP_DIR/.wslconfig"
+else
+  echo "  → .wslconfig not found, skipping..."
+fi
+
+# --- 3. Backup to restic ---
+echo "Backing up to restic..."
+restic -r "$R1" backup "$BACKUP_DIR" --tag wsl
+restic -r "$R2" backup "$BACKUP_DIR" --tag wsl
+
+# --- 4. Prune old snapshots ---
+echo "Pruning old snapshots..."
+restic -r "$R1" forget --tag wsl --keep-last 1 --prune
+restic -r "$R2" forget --tag wsl --keep-last 1 --prune
+
+# --- 5. Clean up ---
+rm -rf "$BACKUP_DIR"
+echo "WSL config backup completed successfully"

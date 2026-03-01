@@ -11,6 +11,9 @@
 # - Kali VM: apt packages
 # - RHEL VM: dnf packages
 
+# - Backs up to local Pi (R1) and cloud B2 (R2)
+# - Prunes old snapshots, keeping last 1
+
 set -euo pipefail
 
 VBOXMANAGE="/mnt/c/Program Files/Oracle/VirtualBox/VBoxManage.exe"

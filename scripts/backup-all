@@ -21,6 +21,7 @@ scripts=(
   "zshrc-backup"
   "zellij-backup"
   "nvim-backup"
+  "wsl-backup"
   "helix-backup"
   "package-backup"
   "bash-backup"
