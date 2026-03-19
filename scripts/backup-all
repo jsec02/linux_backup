@@ -15,22 +15,22 @@ echo ""
 
 # Array of backup scripts to run
 scripts=(
-  "powershell-backup"
-  "python-backup"
-  "vault-backup"
-  "zshrc-backup"
-  "zellij-backup"
-  "nvim-backup"
-  "wsl-backup"
+  "bash-backup"
+  "database-backup"
+  "direnv-backup"
   "helix-backup"
   "nftables-backup"
+  "nvim-backup"
   "package-backup"
-  "bash-backup"
-  "direnv-backup"
-  "database-backup"
+  "powershell-backup"
+  "python-backup"
   "sql-backup"
   "ssh-backup"
+  "vault-backup"
+  "wsl-backup"
   "wt-backup"
+  "zellij-backup"
+  "zsh-backup"
 )
 
 # Track failures
