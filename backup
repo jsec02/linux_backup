@@ -10,6 +10,9 @@
 # - Prunes old snapshots, keeping last 1 or 7
 
 REPOSITORIES=("$R1" "$R2")
+
+PI="master@10.0.0.181"
+
 PI_HOME="/home/master"
 WIN_HOME="/mnt/c/Users/master"
 
@@ -59,9 +62,9 @@ backup_databases() {
     mkdir --parents "$PI_DST_DIR"
 
     # shellcheck disable=SC2029
-    if ssh master@10.0.0.181 "[[ -d $PI_SRC_DIR ]]"; then
+    if ssh "$PI" "[[ -d $PI_SRC_DIR ]]"; then
         echo "Collecting pi databases..."
-        rsync --archive --verbose --copy-links "master@10.0.0.181:$PI_SRC_DIR" "$PI_DST_DIR"
+        rsync --archive --verbose --copy-links "$PI:$PI_SRC_DIR" "$PI_DST_DIR"
     fi
 
     # Backup
@@ -129,9 +132,9 @@ backup_nftables() {
     mkdir --parents "$PI_DST_DIR"
 
     # shellcheck disable=SC2029
-    if ssh master@10.0.0.181 "[[ -f $PI_SRC_FILE ]]"; then
+    if ssh "$PI" "[[ -f $PI_SRC_FILE ]]"; then
         echo "Collecting pi nftables.conf..."
-        rsync --archive --verbose --copy-links "master@10.0.0.181:$PI_SRC_FILE" "$PI_DST_DIR"
+        rsync --archive --verbose --copy-links "$PI:$PI_SRC_FILE" "$PI_DST_DIR"
     fi
 
     # Backup
@@ -162,9 +165,9 @@ backup_history() {
     mkdir --parents "$PI_DST_DIR"
 
     # shellcheck disable=SC2029
-    if ssh master@10.0.0.181 "[[ -f $PI_SRC_FILE ]]"; then
+    if ssh "$PI" "[[ -f $PI_SRC_FILE ]]"; then
         echo "Collecting pi zsh_history..."
-        rsync --archive --verbose --copy-links "master@10.0.0.181:$PI_SRC_FILE" "$PI_DST_DIR"
+        rsync --archive --verbose --copy-links "$PI:$PI_SRC_FILE" "$PI_DST_DIR"
     fi
 
     # Backup
