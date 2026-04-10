@@ -4,7 +4,7 @@
 # =                                    BACKUP                                    =
 # ================================================================================
 
-# Backup notes, code, configuration files, packages, and databases
+# Backup notes, code, configuration files, and databases
 # - Collects from wsl, windows, and pi
 # - Sends to local pi (R1) and cloud B2 (R2) Restic repositories
 # - Prunes old snapshots, keeping last 1 or 7

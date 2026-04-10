@@ -1,6 +1,6 @@
 ### backup_script
 
-A comprehensive backup automation script built on [Restic](https://github.com/restic/restic) with dual-repository redundancy. Backs up configuration files, code, documents, and system state to both a local Raspberry Pi (SFTP) and [Backblaze B2](https://www.backblaze.com/cloud-storage) (cloud). Features include automated retention policies, integrity checking, and single-command execution of all backup jobs.
+A comprehensive backup automation script built on [Restic](https://github.com/restic/restic) with dual-repository redundancy. Backs up configuration files, code, notes, and databases to both a local Raspberry Pi and [Backblaze B2](https://www.backblaze.com/cloud-storage) cloud storage. Features include automated retention policies, integrity checking, and single-command execution of all backup jobs.
 
 <!-- CODE_STATISTICS_START -->
 
@@ -11,9 +11,9 @@ A comprehensive backup automation script built on [Restic](https://github.com/re
 Language                      files          blank        comment           code
 --------------------------------------------------------------------------------
 Bourne Again Shell                1             74             36            204
-Markdown                          1              8              4             20
+Markdown                          1             10              4             20
 --------------------------------------------------------------------------------
-SUM:                              2             82             40            224
+SUM:                              2             84             40            224
 --------------------------------------------------------------------------------
 ```
 <!-- CODE_STATISTICS_END -->
