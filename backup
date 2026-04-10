@@ -10,6 +10,7 @@
 # - Prunes old snapshots, keeping last 1 or 7
 
 REPOSITORIES=("$R1" "$R2")
+PI_HOME="/home/master"
 WIN_HOME="/mnt/c/Users/master"
 
 restic_backup() {
@@ -52,7 +53,7 @@ backup_databases() {
     fi
 
     # Collect from pi
-    local PI_SRC_DIR="/home/master/databases"
+    local PI_SRC_DIR="$PI_HOME/databases"
     local PI_DST_DIR="$DST_DIR/pi"
 
     mkdir --parents "$PI_DST_DIR"
@@ -111,7 +112,7 @@ backup_nftables() {
     local DST_DIR="/tmp/nftables"
 
     # Collect from wsl
-    local WSL_SRC_FILE=/etc/nftables.conf
+    local WSL_SRC_FILE="/etc/nftables.conf"
     local WSL_DST_DIR="$DST_DIR/wsl"
 
     mkdir --parents "$WSL_DST_DIR"
@@ -122,7 +123,7 @@ backup_nftables() {
     fi
 
     # Collect from pi
-    local PI_SRC_FILE=/etc/nftables.conf
+    local PI_SRC_FILE="/etc/nftables.conf"
     local PI_DST_DIR="$DST_DIR/pi"
 
     mkdir --parents "$PI_DST_DIR"
@@ -135,6 +136,39 @@ backup_nftables() {
 
     # Backup
     restic_backup "$DST_DIR" nftables 1
+
+    # Cleanup
+    rm --recursive --force "$DST_DIR"
+}
+
+backup_history() {
+    local DST_DIR="/tmp/history"
+
+    # Collect from wsl
+    local WSL_SRC_FILE="$HOME/.zsh_history"
+    local WSL_DST_DIR="$DST_DIR/wsl"
+
+    mkdir --parents "$WSL_DST_DIR"
+
+    if [[ -f "$WSL_SRC_FILE" ]]; then
+        echo "Collecting wsl zsh_history..."
+        rsync --archive --verbose --copy-links "$WSL_SRC_FILE" "$WSL_DST_DIR"
+    fi
+
+    # Collect from pi
+    local PI_SRC_FILE="$PI_HOME/.zsh_history"
+    local PI_DST_DIR="$DST_DIR/pi"
+
+    mkdir --parents "$PI_DST_DIR"
+
+    # shellcheck disable=SC2029
+    if ssh master@10.0.0.181 "[[ -f $PI_SRC_FILE ]]"; then
+        echo "Collecting pi zsh_history..."
+        rsync --archive --verbose --copy-links "master@10.0.0.181:$PI_SRC_FILE" "$PI_DST_DIR"
+    fi
+
+    # Backup
+    restic_backup "$DST_DIR" history 1
 
     # Cleanup
     rm --recursive --force "$DST_DIR"
@@ -226,6 +260,7 @@ backup() {
         backup_sqliterc
         backup_databases
         backup_nftables
+        backup_history
         backup_wsl
         backup_wt
         backup_zsh
