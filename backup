@@ -36,6 +36,7 @@ backup_python() { restic_backup python 7 "$HOME/python"; }
 backup_bash() { restic_backup bash 7 "$HOME/bash"; }
 backup_powershell() { restic_backup powershell 7 "$HOME/powershell"; }
 backup_sql() { restic_backup sql 7 "$HOME/sql"; }
+backup_dotfiles() { restic_backup dotfiles 7 "$HOME/dotfiles"; }
 backup_nvim() { restic_backup nvim 7 "$HOME/.config/nvim"; }
 backup_zellij() { restic_backup zellij 7 "$HOME/.config/zellij"; }
 backup_wt() { restic_backup wt 1 "$WIN_HOME/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"; }
