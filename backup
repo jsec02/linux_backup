@@ -46,7 +46,7 @@ backup_direnv() { restic_backup direnv 7 "$HOME/.config/direnv"; }
 backup_sqliterc() { restic_backup sqliterc 1 "$HOME/.sqliterc"; }
 backup_databases() { restic_backup databases 7 "$HOME/databases"; }
 backup_services() { restic_backup services 1 "/etc/systemd/system/riven-sniper.service"; }
-backup_ssh() { restic_backup ssh 1 "$HOME/.ssh/config" "$HOME/.ssh/id_ed25519" "$HOME/.ssh/id_ed25519.pub"; }
+backup_ssh() { restic_backup ssh 1 "$HOME/.ssh"; }
 backup_nftables() { restic_backup nftables 1 "/etc/nftables.conf"; }
 backup_history() { restic_backup history 1 "$HOME/.zsh_history"; }
 backup_wsl() { restic_backup wsl 1 "/etc/wsl.conf" "$WIN_HOME/.wslconfig"; }

@@ -24,8 +24,8 @@ SUM:                              2             27             10            116
 
 ```
 backup_system
-├── backup
-└── README.md
+|-- README.md
+`-- backup
 
 1 directory, 2 files
 ```
