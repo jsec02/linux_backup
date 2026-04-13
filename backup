@@ -43,6 +43,7 @@ backup_wt() { restic_backup wt 1 "$WIN_HOME/AppData/Local/Packages/Microsoft.Win
 backup_helix() { restic_backup helix 7 "$HOME/.config/helix"; }
 backup_kakoune() { restic_backup kakoune 7 "$HOME/.config/kak"; }
 backup_direnv() { restic_backup direnv 7 "$HOME/.config/direnv"; }
+backup_git() { restic_backup git 1 "$HOME/.gitconfig"; }
 backup_sqliterc() { restic_backup sqliterc 1 "$HOME/.sqliterc"; }
 backup_databases() { restic_backup databases 7 "$HOME/databases"; }
 backup_services() { restic_backup services 1 "/etc/systemd/system/riven-sniper.service"; }
