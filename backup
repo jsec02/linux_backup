@@ -42,6 +42,7 @@ backup_nvim() { restic_backup nvim 7 "$HOME/.config/nvim"; }
 backup_yazi() { restic_backup yazi 7 "$HOME/.config/yazi"; }
 backup_lightdm() { restic_backup lightdm 1 "/etc/lightdm/lightdm.conf"; }
 backup_autostart() { restic_backup autostart 1 "$HOME/.config/autostart"; }
+backup_redshift() { restic_backup redshift 1 "$HOME/.config/redshift"; }
 backup_zellij() { restic_backup zellij 7 "$HOME/.config/zellij"; }
 backup_wt() { restic_backup wt 1 "$WIN_HOME/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"; }
 backup_helix() { restic_backup helix 7 "$HOME/.config/helix"; }
