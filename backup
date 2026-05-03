@@ -8,6 +8,8 @@
 # - Sends to local pi (R1) and cloud B2 (R2) Restic repositories
 # - Prunes old snapshots, keeping last 1 or 7
 
+NAME=${0##*/}
+
 REPOSITORIES=("$R1" "$R2")
 
 WIN_HOME="/mnt/c/Users/master"
@@ -123,17 +125,10 @@ backup_stats() {
 }
 
 main() {
-    local cmd="${1:-backup}"
-    shift
-
-    case "$cmd" in
-        backup) backup "$@" ;;
+    case "$1" in
         integrity) backup_integrity ;;
         stats) backup_stats ;;
-        *)
-            echo "$(basename "$0") usage: {backup|integrity|stats}"
-            exit 1
-            ;;
+        *) backup "$@" ;;
     esac
 }
 
