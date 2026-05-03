@@ -44,7 +44,7 @@ backup_packages() { restic_backup packages 1 "$HOME/packages"; }
 backup_wireguard() { restic_backup wireguard 1 "/etc/wireguard"; }
 backup_lightdm() { restic_backup lightdm 1 "/etc/lightdm/lightdm.conf"; }
 backup_navidrome() { restic_backup navidrome 1 "/etc/navidrome/navidrome.toml"; }
-backup_autostart() { restic_backup autostart 1 "$HOME/.config/autostart"; }
+backup_autostart() { restic_backup autostart 1 "$HOME/.config/autostart/deskflow.desktop" "$HOME/.config/autostart/redshift.desktop"; }
 backup_redshift() { restic_backup redshift 1 "$HOME/.config/redshift"; }
 backup_zellij() { restic_backup zellij 7 "$HOME/.config/zellij"; }
 backup_wt() { restic_backup wt 1 "$WIN_HOME/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"; }
