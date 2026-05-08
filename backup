@@ -44,6 +44,7 @@ backup_fzf() { restic_backup fzf 7 "$HOME/.config/fzf"; }
 backup_git() { restic_backup git 1 "$HOME/.gitconfig"; }
 backup_helix() { restic_backup helix 7 "$HOME/.config/helix"; }
 backup_history() { restic_backup history 7 "$HOME/.zsh_history"; }
+backup_icons() { restic_backup icons 1 "$HOME/icons"; }
 backup_kakoune() { restic_backup kakoune 7 "$HOME/.config/kak"; }
 backup_lightdm() { restic_backup lightdm 1 "/etc/lightdm/lightdm.conf"; }
 backup_navidrome() { restic_backup navidrome 1 "/etc/navidrome/navidrome.toml"; }
@@ -78,6 +79,7 @@ backup() {
         backup_fzf
         backup_helix
         backup_history
+        backup_icons
         backup_kakoune
         backup_lightdm
         backup_navidrome
