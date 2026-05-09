@@ -40,6 +40,7 @@ backup_bash() { restic_backup bash 7 "$HOME/bash"; }
 backup_databases() { restic_backup databases 7 "$HOME/databases"; }
 backup_direnv() { restic_backup direnv 1 "$HOME/.config/direnv"; }
 backup_dotfiles() { restic_backup dotfiles 7 "$HOME/dotfiles"; }
+backup_c() { restic_backup c 7 "$HOME/c"; }
 backup_fzf() { restic_backup fzf 7 "$HOME/.config/fzf"; }
 backup_git() { restic_backup git 1 "$HOME/.gitconfig"; }
 backup_helix() { restic_backup helix 7 "$HOME/.config/helix"; }
@@ -76,6 +77,7 @@ backup() {
         backup_databases
         backup_direnv
         backup_dotfiles
+        backup_c
         backup_fzf
         backup_helix
         backup_history
