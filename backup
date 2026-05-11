@@ -63,9 +63,9 @@ backup_ssh() { restic_backup ssh 1 "$HOME/.ssh" "$WIN_HOME/.ssh"; }
 backup_vault() { restic_backup vault 7 "$HOME/vault"; }
 backup_wireguard() { restic_backup wireguard 1 "/etc/wireguard"; }
 backup_wsl() { restic_backup wsl 1 "/etc/wsl.conf" "$WIN_HOME/.wslconfig"; }
-backup_wt() { restic_backup wt 1 "$WIN_HOME/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"; }
+backup_wt() { restic_backup wt 7 "$WIN_HOME/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"; }
 backup_yazi() { restic_backup yazi 7 "$HOME/.config/yazi"; }
-backup_zellij() { restic_backup zellij 7 "$HOME/.config/zellij"; }
+backup_zellij() { restic_backup zellij 7 "$HOME/.config/zellij" "$WIN_HOME/AppData/Roaming/Zellij/config"; }
 backup_zsh() { restic_backup zsh 7 "$HOME/.zshrc" "$HOME/.zshenv" "$HOME/.zshenv.local" "$HOME/.zprofile"; }
 
 backup() {
