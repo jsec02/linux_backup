@@ -56,6 +56,7 @@ backup_powershell() { restic_backup powershell 7 "$HOME/powershell"; }
 backup_python() { restic_backup python 7 "$HOME/python"; }
 backup_qgmlwy() { restic_backup qgmlwy 7 "$HOME/qgmlwy"; }
 backup_redshift() { restic_backup redshift 1 "$HOME/.config/redshift"; }
+backup_resolv() { restic_backup resolv 1 "/etc/resolv.conf"; }
 backup_services() { restic_backup services 1 "/etc/systemd/system/riven-sniper.service" "/etc/systemd/system/qbittorrent-nox.service"; }
 backup_sql() { restic_backup sql 7 "$HOME/sql"; }
 backup_sqliterc() { restic_backup sqliterc 1 "$HOME/.sqliterc"; }
@@ -92,6 +93,7 @@ backup() {
         backup_python
         backup_qgmlwy
         backup_redshift
+        backup_resolv
         backup_services
         backup_sql
         backup_sqliterc
