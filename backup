@@ -59,7 +59,7 @@ backup_python() { restic_backup python 7 "$HOME/python"; }
 backup_qgmlwy() { restic_backup qgmlwy 7 "$HOME/qgmlwy"; }
 backup_redshift() { restic_backup redshift 1 "$HOME/.config/redshift"; }
 backup_resolv() { restic_backup resolv 1 "/etc/resolv.conf"; }
-backup_services() { restic_backup services 1 "/etc/systemd/system/riven-sniper.service" "/etc/systemd/system/qbittorrent-nox.service"; }
+backup_services() { restic_backup services 1 "/etc/systemd/system/riven-sniper.service" "/etc/systemd/system/qbittorrent-nox.service" "/etc/systemd/system/glances-web.service"; }
 backup_sql() { restic_backup sql 7 "$HOME/sql"; }
 backup_sqliterc() { restic_backup sqliterc 1 "$HOME/.sqliterc"; }
 backup_ssh() { restic_backup ssh 1 "$HOME/.ssh" "$WIN_HOME/.ssh"; }
