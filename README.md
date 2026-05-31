@@ -10,10 +10,10 @@ A comprehensive backup automation script built on [Restic](https://github.com/re
 --------------------------------------------------------------------------------
 Language                      files          blank        comment           code
 --------------------------------------------------------------------------------
-Bourne Again Shell                1             15              9             50
+Bourne Again Shell                1             12              9             42
 Markdown                          1              8              4             20
 --------------------------------------------------------------------------------
-SUM:                              2             23             13             70
+SUM:                              2             20             13             62
 --------------------------------------------------------------------------------
 ```
 <!-- CODE_STATISTICS_END -->
@@ -25,8 +25,9 @@ SUM:                              2             23             13             70
 ```
 backup_system
 ├── backup
+├── etc
 └── README.md
 
-1 directory, 2 files
+2 directories, 2 files
 ```
 <!-- PROJECT_STRUCTURE_END -->
