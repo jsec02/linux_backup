@@ -34,7 +34,7 @@ restic_backup() {
 backup() {
     while read -r tag paths; do
         restic_backup "$tag" $paths
-    done < <(python3 "$HOME/inventory/parser.py" paths "$HOSTNAME" "$@")
+    done < <(python3 "$HOME/parsers/inventory.py" paths "$HOSTNAME" "$@")
 }
 
 backup_integrity() {
