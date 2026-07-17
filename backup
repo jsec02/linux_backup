@@ -12,6 +12,24 @@ NAME=${0##*/}
 
 REPOSITORIES=("$R1" "$R2")
 
+backup_integrity() {
+    for repo in "${REPOSITORIES[@]}"; do
+        restic --repo "$repo" check --read-data-subset=5%
+    done
+}
+
+backup_stats() {
+    for repo in "${REPOSITORIES[@]}"; do
+        restic --repo "$repo" stats --mode=raw-data
+    done
+}
+
+backup() {
+    while read -r tag paths; do
+        restic_backup "$tag" $paths
+    done < <(python3 "$HOME/parsers/inventory.py" paths "$HOSTNAME" "$@")
+}
+
 restic_backup() {
     local tag="$1"
     shift
@@ -28,24 +46,6 @@ restic_backup() {
         restic --repo "$repo" backup "${paths[@]}" --tag "$tag"
         # Group by tags and hosts to prevent path changes from creating orphaned snapshots
         restic --repo "$repo" forget --tag "$tag" --host "$HOSTNAME" --keep-last 7 --group-by tags,hosts --prune
-    done
-}
-
-backup() {
-    while read -r tag paths; do
-        restic_backup "$tag" $paths
-    done < <(python3 "$HOME/parsers/inventory.py" paths "$HOSTNAME" "$@")
-}
-
-backup_integrity() {
-    for repo in "${REPOSITORIES[@]}"; do
-        restic --repo "$repo" check --read-data-subset=5%
-    done
-}
-
-backup_stats() {
-    for repo in "${REPOSITORIES[@]}"; do
-        restic --repo "$repo" stats --mode=raw-data
     done
 }
 

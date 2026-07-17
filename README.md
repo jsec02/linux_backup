@@ -25,9 +25,8 @@ SUM:                              2             20             13             63
 ```
 backup_system
 ├── backup
-├── etc
 └── README.md
 
-2 directories, 2 files
+1 directory, 2 files
 ```
 <!-- PROJECT_STRUCTURE_END -->
