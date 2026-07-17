@@ -11,9 +11,9 @@ A comprehensive backup automation script built on [Restic](https://github.com/re
 Language                      files          blank        comment           code
 --------------------------------------------------------------------------------
 Bourne Again Shell                1             12              9             42
-Markdown                          1              8              4             21
+Markdown                          1              8              4             20
 --------------------------------------------------------------------------------
-SUM:                              2             20             13             63
+SUM:                              2             20             13             62
 --------------------------------------------------------------------------------
 ```
 <!-- CODE_STATISTICS_END -->

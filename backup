@@ -24,12 +24,6 @@ backup_stats() {
     done
 }
 
-backup() {
-    while read -r tag paths; do
-        restic_backup "$tag" $paths
-    done < <(python3 "$HOME/parsers/inventory.py" paths "$HOSTNAME" "$@")
-}
-
 restic_backup() {
     local tag="$1"
     shift
@@ -47,6 +41,12 @@ restic_backup() {
         # Group by tags and hosts to prevent path changes from creating orphaned snapshots
         restic --repo "$repo" forget --tag "$tag" --host "$HOSTNAME" --keep-last 7 --group-by tags,hosts --prune
     done
+}
+
+backup() {
+    while read -r tag paths; do
+        restic_backup "$tag" $paths
+    done < <(python3 "$HOME/parsers/inventory.py" paths "$HOSTNAME" "$@")
 }
 
 main() {
