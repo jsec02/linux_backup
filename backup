@@ -8,6 +8,8 @@
 # - Sends to local pi (R1) and cloud B2 (R2) Restic repositories
 # - Prunes old snapshots, keeping last 1 or 7
 
+set -euo pipefail
+
 NAME=${0##*/}
 
 REPOSITORIES=("$R1" "$R2")
