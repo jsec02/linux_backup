@@ -52,7 +52,7 @@ backup() {
 }
 
 main() {
-    case "$1" in
+    case "${1:-}" in
         integrity) backup_integrity ;;
         stats) backup_stats ;;
         -h | --help)
