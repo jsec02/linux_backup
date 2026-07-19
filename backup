@@ -40,8 +40,8 @@ restic_backup() {
 
     for repo in "${REPOSITORIES[@]}"; do
         restic --repo "$repo" backup "${paths[@]}" --tag "$tag"
-        # Group by tags and hosts to prevent path changes from creating orphaned snapshots
-        restic --repo "$repo" forget --tag "$tag" --host "$HOSTNAME" --keep-last 7 --group-by tags,hosts --prune
+        # Group by hosts and tags to prevent path changes from creating orphaned snapshots
+        restic --repo "$repo" forget --host "$HOSTNAME" --tag "$tag" --keep-last 7 --group-by hosts,tags --prune
     done
 }
 
