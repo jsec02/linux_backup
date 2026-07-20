@@ -27,6 +27,10 @@ backup_stats() {
 }
 
 restic_backup() {
+    local cmd="restic"
+    [[ "$1" == "true" ]] && cmd="sudo --preserve-env restic"
+    shift
+
     local tag="$1"
     shift
 
@@ -39,15 +43,19 @@ restic_backup() {
     ((${#paths[@]} == 0)) && return
 
     for repo in "${REPOSITORIES[@]}"; do
-        restic --repo "$repo" backup "${paths[@]}" --tag "$tag"
+        $cmd --repo "$repo" backup "${paths[@]}" --tag "$tag"
         # Group by hosts and tags to prevent path changes from creating orphaned snapshots
+        # Restic forget never needs sudo
         restic --repo "$repo" forget --host "$HOSTNAME" --tag "$tag" --keep-last 7 --group-by hosts,tags --prune
     done
 }
 
 backup() {
-    while read -r tag paths; do
-        restic_backup "$tag" $paths
+    # When read gets more words than variables,
+    # it puts the remaining words into the last variable
+    # For modules with multiple paths, each path gets assigned to paths correctly
+    while read -r sudo tag paths; do
+        restic_backup "$sudo" "$tag" $paths # $paths should be unqouted to pass in separate args for each path
     done < <(python3 "$HOME/parsers/inventory.py" paths "$HOSTNAME" "$@")
 }
 
